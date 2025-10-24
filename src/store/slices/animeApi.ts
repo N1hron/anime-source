@@ -1,7 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { createURLSearchParams } from '@/utils';
-import type { GetAnimeListQueryParameters, GetAnimeListResult } from '@/types';
+import type {
+  GetAnimeListQueryParameters,
+  GetAnimeListResult,
+  GetAnimeRankingQueryParameters,
+  GetAnimeRankingResult,
+} from '@/types';
 
 export const animeApi = createApi({
   reducerPath: 'animeApi',
@@ -13,9 +18,11 @@ export const animeApi = createApi({
   }),
   endpoints: (build) => ({
     getAnimeList: build.query<GetAnimeListResult, GetAnimeListQueryParameters>({
-      query: (params) => {
-        return `anime?${createURLSearchParams(params)}`;
-      },
+      query: (params) => `anime?${createURLSearchParams(params)}`,
+    }),
+    getAnimeRanking: build.query<GetAnimeRankingResult, GetAnimeRankingQueryParameters>({
+      query: (params) => `anime/ranking?${createURLSearchParams(params)}`,
+      keepUnusedDataFor: 300,
     }),
   }),
 });
@@ -23,4 +30,4 @@ export const animeApi = createApi({
 export const animeApiReducer = animeApi.reducer;
 export const animeApiReducerPath = animeApi.reducerPath;
 export const animeApiMiddleware = animeApi.middleware;
-export const { useGetAnimeListQuery } = animeApi;
+export const { useGetAnimeListQuery, useGetAnimeRankingQuery } = animeApi;

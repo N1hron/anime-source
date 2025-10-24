@@ -11,6 +11,10 @@ html {
   font-size: var(--font-size-sm);
 }
 
+* {
+  scrollbar-width: thin;
+}
+
 *::selection {
   background-color: var(--color-emerald-600);
   color: var(--color-zinc-50);

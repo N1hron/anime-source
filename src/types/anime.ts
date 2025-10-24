@@ -77,6 +77,8 @@ export type AnimeFull = Anime & {
   } | null;
 };
 
+export type AnimeShort = Pick<Anime, 'id' | 'main_picture' | 'title' | 'alternative_titles'>;
+
 type AnimeNSFWType = 'white' | 'gray' | 'black';
 
 type AnimeWeekday = Weekday | 'other';
@@ -126,13 +128,38 @@ type DataWithPaging<D> = {
   paging: Paging;
 };
 
-export type GetAnimeListQueryParameters = {
-  q?: string;
+type GetAnimeQueryParameters<P> = P & {
   limit?: number; // The maximum value is 100
   offset?: number;
   fields?: AnimeFields[];
 };
 
+export type GetAnimeListQueryParameters = GetAnimeQueryParameters<{
+  q?: string;
+}>;
+
+export type GetAnimeRankingQueryParameters = GetAnimeQueryParameters<{
+  ranking_type: AnimeRankingType;
+}>;
+
 export type GetAnimeListResult = DataWithPaging<{ node: Anime }>;
+export type GetAnimeRankingResult = DataWithPaging<{
+  node: Anime;
+  ranking: {
+    rank: number;
+    previous_rank: number | null;
+  };
+}>;
+
+export type AnimeRankingType =
+  | 'all'
+  | 'airing'
+  | 'upcoming'
+  | 'tv'
+  | 'ova'
+  | 'movie'
+  | 'special'
+  | 'bypopularity'
+  | 'favorite';
 
 export type AnimeSearchCategory = 'search' | 'top' | 'popular' | 'airing' | 'upcoming';

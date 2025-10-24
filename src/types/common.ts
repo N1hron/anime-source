@@ -8,3 +8,5 @@ export type Weekday =
   | 'sunday';
 
 export type Season = 'winter' | 'spring' | 'summer' | 'fall';
+
+export type TimeoutId = ReturnType<typeof setTimeout>;

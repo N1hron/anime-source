@@ -2,54 +2,91 @@
   position: relative;
   grid-column: 2/3;
   width: 27rem;
-  padding: 0 1rem;
+  overflow: hidden;
 }
 
-.category {
+$controls-gap: 0.5rem;
+$controls-item-height: 2.25rem;
+$controls-height-min: $controls-item-height;
+$controls-height-max: calc($controls-item-height * 2 + $controls-gap);
+$input-top-min: 0;
+$input-top-max: calc($controls-item-height + $controls-gap);
+$results-padding-top-min: calc($controls-height-min + 1.75rem);
+$results-padding-top-max: calc($controls-height-max + 1.75rem);
+
+.animeSearchInputVisible {
+  .controls {
+    height: $controls-height-max;
+    transition-delay: 0s;
+  }
+
+  .input {
+    top: $input-top-max;
+    filter: none;
+    scale: 1;
+    transition-delay: var(--transition-duration), var(--transition-duration), 0s;
+  }
+
+  .results {
+    padding-top: $results-padding-top-max;
+    transition-delay: 0s;
+  }
+}
+
+.controls {
   position: absolute;
   left: 1rem;
   top: 1rem;
   right: 1rem;
+  height: $controls-height-min;
+  transition-property: height;
+  transition-duration: var(--transition-duration);
+  transition-delay: var(--transition-duration);
+}
+
+.category {
+  position: relative;
+  width: auto;
+  z-index: 2;
+}
+
+.input {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: $input-top-min;
+  filter: blur(0.0625rem) brightness(0.5);
+  scale: 0.95;
+  transition-property: filter, scale, top;
+  transition-duration: var(--transition-duration);
+  transition-delay: 0s, 0s, var(--transition-duration);
+
+  input {
+    width: 100%;
+  }
+}
+
+.results {
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  padding: $results-padding-top-min 1rem 1rem;
+  transition-property: padding-top;
+  transition-duration: var(--transition-duration);
+  transition-delay: var(--transition-duration);
+}
+
+.list {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.tabList {
-  width: auto;
-  z-index: 2;
-}
-
-.inputWrapper {
-  position: relative;
-  z-index: 1;
-  filter: blur(0.0625rem) brightness(0.5);
-  scale: 0.95;
-  transform: translateY(calc(-100% - 0.5rem - var(--border-width-thin) * 2));
-  transition-property: filter, scale, transform;
-  transition-duration: var(--transition-duration);
-  transition-delay: 0s, 0s, var(--transition-duration);
-
-  &IsVisible {
-    filter: none;
-    scale: 1;
-    transform: none;
-    transition-delay: var(--transition-duration), var(--transition-duration), 0s;
-  }
-}
-
-.input {
-  width: 100%;
-}
-
-.results {
-  padding-top: 3.75rem;
-  transition-property: padding-top;
-  transition-duration: var(--transition-duration);
-  transition-delay: var(--transition-duration);
-
-  &IsSearch {
-    padding-top: 6.75rem;
-    transition-delay: 0s;
-  }
+.listItem {
+  // :global {
+  //   animation-name: appear;
+  //   animation-duration: 0.5s;
+  //   animation-fill-mode: both;
+  // }
 }
