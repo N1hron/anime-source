@@ -25,4 +25,10 @@
 
   --font-size-xs: 0.875rem;
   --font-size-sm: 1rem;
+
+  --border-width-thin: 0.0625rem;
+  --border-width: calc(var(--border-width-thin) * 2);
+
+  --transition-duration-fast: 0.125s;
+  --transition-duration: 0.25s;
 }

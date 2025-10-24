@@ -1,0 +1,55 @@
+.animeSearch {
+  position: relative;
+  grid-column: 2/3;
+  width: 27rem;
+  padding: 0 1rem;
+}
+
+.category {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tabList {
+  width: auto;
+  z-index: 2;
+}
+
+.inputWrapper {
+  position: relative;
+  z-index: 1;
+  filter: blur(0.0625rem) brightness(0.5);
+  scale: 0.95;
+  transform: translateY(calc(-100% - 0.5rem - var(--border-width-thin) * 2));
+  transition-property: filter, scale, transform;
+  transition-duration: var(--transition-duration);
+  transition-delay: 0s, 0s, var(--transition-duration);
+
+  &IsVisible {
+    filter: none;
+    scale: 1;
+    transform: none;
+    transition-delay: var(--transition-duration), var(--transition-duration), 0s;
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.results {
+  padding-top: 3.75rem;
+  transition-property: padding-top;
+  transition-duration: var(--transition-duration);
+  transition-delay: var(--transition-duration);
+
+  &IsSearch {
+    padding-top: 6.75rem;
+    transition-delay: 0s;
+  }
+}

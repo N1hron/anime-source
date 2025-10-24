@@ -1,0 +1,41 @@
+$list-height: 2.25rem;
+$list-padding: 0.25rem;
+$list-border-radius: 1.125rem;
+$list-border-width: var(--border-width-thin);
+
+$trigger-border-radius: calc($list-border-radius - $list-padding - $list-border-width);
+
+.list {
+  height: $list-height;
+  padding: $list-padding;
+  display: flex;
+  gap: 0.25rem;
+  border: solid $list-border-width var(--color-zinc-800);
+  border-radius: $list-border-radius;
+  background-color: var(--color-zinc-900);
+  width: fit-content;
+}
+
+.trigger {
+  padding: 0 0.75rem;
+  border-radius: $trigger-border-radius;
+  background-color: transparent;
+  color: var(--color-zinc-100);
+  flex-grow: 1;
+  text-align: center;
+  transition-property: background-color, color;
+  transition-duration: var(--transition-duration-fast);
+  cursor: pointer;
+
+  &:not(.triggerIsActive) {
+    &:hover {
+      background-color: var(--color-zinc-800);
+      color: var(--color-zinc-50);
+    }
+  }
+}
+
+.triggerIsActive {
+  background-color: var(--color-emerald-600);
+  cursor: unset;
+}

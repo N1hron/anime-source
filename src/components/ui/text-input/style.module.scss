@@ -1,0 +1,25 @@
+.textInput {
+  height: calc(2.25rem - var(--border-width-thin) * 2);
+  border-radius: 1.125rem;
+  padding: 0 1rem;
+  margin: var(--border-width-thin);
+  background-color: var(--color-zinc-900);
+  outline: solid var(--border-width-thin) var(--color-zinc-800);
+  transition-property: outline-color;
+  transition-duration: var(--transition-duration-fast);
+
+  &:not(:disabled) {
+    &:hover {
+      outline-color: var(--color-zinc-700);
+    }
+
+    &:focus {
+      outline-width: var(--border-width);
+      outline-color: var(--color-emerald-500);
+    }
+  }
+
+  &::placeholder {
+    color: var(--color-zinc-600);
+  }
+}

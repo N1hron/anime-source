@@ -1,12 +1,21 @@
-@use "styles/modern-normalize";
-@use "styles/reset";
-@use "styles/fonts";
-@use "styles/theme";
+@use 'styles/modern-normalize';
+@use 'styles/reset';
+@use 'styles/fonts';
+@use 'styles/theme';
 
 html {
   background-color: var(--color-zinc-950);
   color: var(--color-zinc-50);
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 500;
   font-size: var(--font-size-sm);
+}
+
+*::selection {
+  background-color: var(--color-emerald-600);
+  color: var(--color-zinc-50);
+}
+
+#root {
+  height: 100dvh;
 }
